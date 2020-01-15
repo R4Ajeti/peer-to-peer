@@ -1,0 +1,22 @@
+def balanced_brackets?(string)
+  # your code here
+  stack = []
+  return false if string.length == 1
+  string.each_char do |char|
+    if char == "(" || char == "{" || char == "["
+      stack << char
+    elsif (char == "}" && stack.last == "{") || (char == "]" && stack.last == "[") || (char == ")" && stack.last == "(")
+      stack.pop
+    end
+  end
+  p stack.empty?
+end
+
+puts balanced_brackets?('(hello)[world]')
+# => true
+
+puts balanced_brackets?('([)]')
+# => false
+
+puts balanced_brackets?('[({}{}{})([])]')
+# => true
